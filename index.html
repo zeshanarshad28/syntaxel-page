@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syntaxel - Software Development Company</title>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Color scheme */
+        :root {
+            --primary-color: #17BBBA;
+            --black: #000;
+            --white: #fff;
+            --gray: #f4f4f4;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--black);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--primary-color), var(--black));
+            color: var(--white);
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: var(--gray);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--black);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: var(--gray);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--black);
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 80px 0;
+            background: var(--white);
+        }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .portfolio-item {
+            background: var(--white);
+            border: 1px solid var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .portfolio-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .portfolio-info {
+            padding: 1.5rem;
+        }
+        .portfolio-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .portfolio-info p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        .technologies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: var(--gray);
+        }
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        .contact-info h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--black);
+        }
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+        .contact-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .addresses {
+            margin-top: 2rem;
+        }
+        .address {
+            margin-bottom: 1rem;
+        }
+        form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray);
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Syntaxel</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to Syntaxel</h1>
+            <p>Innovative Software Solutions for the Modern World</p>
+            <a href="#contact" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Mobile Application Development</h3>
+                    <p>Custom mobile apps for iOS and Android that drive engagement and growth.</p>
+                </div>
+                <div class="service-card">
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered designs that create intuitive and beautiful experiences.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Website Development</h3>
+                    <p>Responsive, high-performance websites tailored to your business needs.</p>
+                </div>
+                <div class="service-card">
+                    <h3>SEO & Digital Marketing</h3>
+                    <p>Boost your online presence with proven SEO strategies and marketing campaigns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About Syntaxel</h2>
+                    <p>Syntaxel is a dynamic software development company specializing in mobile applications, UI/UX design, and website development. We also excel in SEO and digital marketing to help your business thrive online.</p>
+                    <p>With a team of passionate experts, we deliver cutting-edge solutions that blend creativity and technology.</p>
+                </div>
+                <div>
+                    <img src="https://via.placeholder.com/500x300/17BBBA/FFFFFF?text=About+Us" alt="About Syntaxel" style="width:100%; border-radius:10px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Our Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="project1.jpg" alt="Project 1 Screenshot">
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Mobile App</h3>
+                        <p>A seamless shopping experience app with integrated payment and inventory management.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="project2.jpg" alt="Project 2 Screenshot">
+                    <div class="portfolio-info">
+                        <h3>Corporate Website Redesign</h3>
+                        <p>Modern UI/UX overhaul for a global firm's website, improving user engagement by 40%.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">HTML/CSS/JS</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="project3.jpg" alt="Project 3 Screenshot">
+                    <div class="portfolio-info">
+                        <h3>SEO Optimization Campaign</h3>
+                        <p>Digital marketing strategy that increased organic traffic by 150% for a startup.</p>
+                        <div class="technologies">
+                            <span class="tech-tag">Google Analytics</span>
+                            <span class="tech-tag">SEMrush</span>
+                            <span class="tech-tag">Content Marketing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p>contact@syntaxel.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Phone</h4>
+                        <p>+923056320218</p>
+                    </div>
+                    <div class="addresses">
+                        <h4>Our Offices</h4>
+                        <div class="address">
+                            <p><strong>UK Office:</strong><br>123 High Street<br>London, EC1A 1BB<br>United Kingdom</p>
+                        </div>
+                        <div class="address">
+                            <p><strong>Pakistan Office:</strong><br>16 A4, PGECHS PIA Road<br>Lahore, Punjab<br>Pakistan</p>
+                        </div>
+                    </div>
+                </div>
+                <form action="https://formspree.io/f/xpwjgegd" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="New Contact Form Submission">
+                    <input type="hidden" name="_cc" value="contact@syntaxel.com">
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Syntaxel. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle for mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
